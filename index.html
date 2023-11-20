@@ -89,10 +89,59 @@
         </div>
 
         <!-- Sidebar -->
-        <div id="sidebar-placeholder"></div>
+        <div id="sidebar">
+            <div class="inner">
+
+                <!-- Menu -->
+                <nav id="menu">
+                    <header class="major">
+                        <h2>Menu</h2>
+                    </header>
+                    <ul>
+                        <li><a href="index.html">Homepage</a></li>
+                        <li><a href="bookmarks.html">Bookmarks</a></li>
+                        <li><a href="gpts.html">GPTs</a></li>
+                        <li>
+                            <span class="opener">Blogs</span>
+                            <ul>
+                                <li><a href="https://medium.com/@eekaiboon" target="_blank">TODO</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+
+                <!-- Section -->
+                <section>
+                    <header class="major">
+                        <h2>🌟 Let's Connect!</h2>
+                    </header>
+                    <p>Got a question, an idea, or just want to say hello? I'm always excited to hear from fellow tech
+                        enthusiasts, collaborators, or anyone interested in what I do. Whether it's about a potential
+                        project, sharing insights, or just a casual chat about technology, I'm all ears. Looking forward
+                        to hearing from you!</p>
+                    <ul class="contact">
+                        <li class="icon solid fa-envelope"><a href="mailto:eekaiboon@gmail.com">eekaiboon@gmail.com</a>
+                        </li>
+                    </ul>
+                </section>
+
+                <!-- Footer -->
+                <footer id="footer">
+                    <p class="copyright">Design: <a href="https://html5up.net">HTML5 UP</a></p>
+                </footer>
+
+            </div>
+        </div>
     </div>
 
     <!-- Scripts -->
+    <script>
+        fetch('sidebar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('sidebar-placeholder').innerHTML = data;
+            });
+    </script>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/browser.min.js"></script>
     <script src="assets/js/breakpoints.min.js"></script>
@@ -102,11 +151,3 @@
 </body>
 
 </html>
-
-<script>
-    fetch('sidebar.html')
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('sidebar-placeholder').innerHTML = data;
-        });
-</script>
