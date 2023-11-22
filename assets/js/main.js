@@ -99,7 +99,9 @@
 function initializeSidebar() {
 
 	var $sidebar = $('#sidebar'),
-		$sidebar_inner = $sidebar.children('.inner');
+		$sidebar_inner = $sidebar.children('.inner'),
+		$window = $(window),
+		$body = $('body');
 
 	// Inactive by default on <= large.
 	breakpoints.on('<=large', function () {
@@ -262,3 +264,60 @@ function initializeSidebar() {
 
 	});
 }
+
+// Function to load sidebar content
+function loadSidebar() {
+    fetch('sidebar.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('sidebar-placeholder').innerHTML = data;
+            initializeSidebar();
+        });
+}
+
+// Ensure that the DOM is fully loaded before running the script
+document.addEventListener('DOMContentLoaded', function() {
+    loadSidebar();
+});
+
+// Select all h2 elements on the page
+// So far, only bookmarks.html has h2
+const headers = document.querySelectorAll('h2');
+
+// Iterate over each h2 element
+for (const header of headers) {
+	// Create a new span element to represent the link symbol
+	const linkSymbol = document.createElement('span');
+	linkSymbol.classList.add('copy-link-button');
+	linkSymbol.textContent = '🔗';
+  
+	// Initially hide the link symbol
+	linkSymbol.style.display = 'none';
+  
+	// Append the link symbol to the end of the h2 element
+	header.appendChild(linkSymbol);
+  
+	header.addEventListener('mouseenter', () => {
+	  // When the user hovers over the element, make the link symbol visible
+	  linkSymbol.style.display = 'inline-block';
+	});
+  
+	// Add an event listener for the mouseleave event on the element
+	header.addEventListener('mouseleave', () => {  
+	  // When the user hovers away from the element, hide the link symbol again
+	  linkSymbol.style.display = 'none';
+	});
+  
+	// Add an event listener for the click event on the link symbol
+	linkSymbol.addEventListener('click', (event) => {
+	  const anchorId = header.querySelector('a').id;
+	  const url = window.location.href.split('#')[0] + '#' + anchorId;
+  
+	  // Update the URL to the corresponding section
+	  window.location.href = url;
+  
+	  // Copy the URL to the user's clipboard
+	  navigator.clipboard.writeText(url);
+	});
+  }
+  

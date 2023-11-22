@@ -2271,3 +2271,19 @@ button,
     border-top: 0;
     margin-top: 0;
     padding-top: 0; }
+
+/* Style the link symbol */
+.copy-link-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: inherit;
+  font-size: 1em;
+  padding: 0 0.3em;
+  display: none; /* Initially hide the link symbol */
+}
+
+/* Style the link symbol when hovering over the header */
+.copy-link-button:hover {
+  display: inline-block; /* Make the link symbol visible */
+}
